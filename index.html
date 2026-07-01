@@ -53,6 +53,7 @@ select,input{width:100%;font-size:16px;padding:12px;border-radius:12px;border:2p
 .badge.now{background:var(--fire3);color:#fff;animation:pulse 1.4s infinite}
 .badge.soon{background:var(--gold);color:#1a1000}
 .badge.live{background:var(--green);color:#052014;animation:pulse 1.4s infinite}
+.badge.group{background:linear-gradient(135deg,var(--purple),#b06bff);color:#fff;display:inline-block;margin-top:5px;padding:5px 11px;box-shadow:0 3px 10px rgba(122,60,255,.4)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
 .weather{position:fixed;right:8px;top:70px;z-index:9;background:#fff;color:#111;border:2px solid var(--fire2);border-radius:999px;padding:7px 10px;font-weight:800;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .gate{position:fixed;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,95,46,.25),transparent 50%),radial-gradient(circle at 80% 80%,rgba(122,60,255,.3),transparent 50%),var(--bg);z-index:99;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -95,15 +96,15 @@ select,input{width:100%;font-size:16px;padding:12px;border-radius:12px;border:2p
 <script>
 const PEOPLE = ["Jole", "Nike", "Arne", "Louis", "Viane", "Ine", "Benjamin", "Jana", "Thomas", "Tim", "Silke", "Marie", "Stephanie", "Knabbel", "Laura", "Lies", "Toon"];
 const LINEUP = {"do": {"Main Stage": [["13:00-13:40", "Yong Yello"], ["14:20-15:20", "Zwangere Guy"], ["16:00-17:00", "Triggerfinger"], ["17:40-18:40", "Kasabian"], ["19:20-20:20", "The Lumineers"], ["21:15-22:30", "The War On Drugs"], ["23:30-01:00", "Mumford & Sons"]], "The Barn": [["13:00-13:30", "Balu Brigada"], ["14:05-15:05", "All Them Witches"], ["15:50-16:50", "The Vaccines"], ["17:50-18:50", "Loyle Carner"], ["19:50-20:50", "JADE"], ["21:50-23:05", "The Prodigy"]], "KluB C": [["13:30-14:05", "Monza"], ["15:05-15:50", "Bente"], ["16:50-17:50", "Yard Act"], ["18:50-19:50", "Dylan Gossett"], ["20:50-21:50", "Tom Smith"], ["23:05-00:20", "Blood Incantation"]], "NEST": [["13:40-14:15", "Ben Ellis"], ["15:20-15:55", "Basht."], ["17:00-17:35", "LA LOM"], ["18:40-19:15", "Karen Dió"], ["20:20-21:10", "PUP"], ["22:30-23:25", "Midnight Generation"]], "The Towers by Jupiler": [["13:40-14:10", "Lovelee Days"], ["15:20-15:50", "Comrad"], ["17:00-17:30", "Billy"], ["18:40-19:10", "Jeroen Delodder B2B Neon"], ["20:20-21:05", "EMILIJA"], ["22:30-23:20", "Yves Deruyter"]], "Het Magazijn": [["14:00-16:00", "Maraschino"], ["16:00-17:30", "Le Swamp (Jan Paternoster)"], ["17:30-19:30", "Mirage"], ["19:30-21:30", "Bavr B2B DC Noises"], ["21:30-23:00", "DJ Chibi Ichigo"]]}, "vr": {"Main Stage": [["13:00-13:40", "Kingfishr"], ["14:15-15:00", "Wolf Alice"], ["15:35-16:35", "The Last Dinner Party"], ["17:15-18:15", "Royel Otis"], ["19:00-20:00", "Teddy Swims"], ["21:00-22:30", "Lewis Capaldi"], ["23:30-00:45", "The xx"]], "The Barn": [["13:00-13:45", "Good Neighbours"], ["14:20-15:20", "Social Distortion"], ["15:55-16:55", "Viagra Boys"], ["17:45-18:45", "Franz Ferdinand"], ["19:40-21:05", "FKA twigs"], ["22:00-23:15", "Charlotte de Witte"]], "KluB C": [["13:45-14:20", "ISE"], ["15:20-15:55", "High Hi"], ["16:55-17:45", "Paris Paloma"], ["18:45-19:45", "Kae Tempest"], ["21:00-22:00", "Agnes Obel"], ["23:15-00:15", "Lauren Spencer Smith"]], "NEST": [["13:40-14:10", "Overpass"], ["15:00-15:30", "Cardinals"], ["16:35-17:10", "Keo"], ["18:15-18:55", "Scene Queen"], ["20:00-20:55", "Radio Free Alice"], ["22:30-23:25", "The Warning"]], "The Towers by Jupiler": [["13:40-14:05", "Many More"], ["15:00-15:25", "ROMY"], ["16:35-17:05", "Deco B2B Mosoo"], ["18:15-18:50", "MATTN"], ["20:00-20:50", "Henri PFR"], ["22:30-23:20", "Viktor"]], "Het Magazijn": [["14:00-16:00", "She the DJ"], ["16:00-18:00", "Jens De Ruyte (SONS)"], ["18:00-19:00", "Merol (Ratkapje)"], ["19:00-21:00", "Helena Lauwaert"], ["21:00-23:00", "Mickael Karkousse B2B John Noseda"]]}, "za": {"Main Stage": [["13:00-13:40", "LANDMVRKS"], ["14:10-14:55", "Palaye Royale"], ["15:30-16:30", "Kneecap"], ["17:10-18:10", "Reneé Rapp"], ["18:55-19:55", "Halsey"], ["20:55-22:25", "Gorillaz"], ["23:25-01:00", "Twenty One Pilots"]], "The Barn": [["13:00-13:40", "Harry Mack"], ["14:25-15:15", "Dogstar"], ["16:00-17:00", "The Haunted Youth"], ["18:00-19:00", "Beirut"], ["20:00-21:00", "Matt Berninger"], ["22:00-23:15", "Pixies"]], "KluB C": [["13:40-14:25", "Linka Moja"], ["15:15-16:00", "Adrian Quesada's Trio Asesino"], ["17:00-18:00", "Don West"], ["18:45-19:45", "Kokoroko"], ["20:35-21:35", "Voilà"], ["22:25-23:25", "CMAT"]], "NEST": [["13:40-14:05", "The New Eves"], ["14:55-15:25", "Man/Woman/Chainsaw"], ["16:30-17:05", "Bleech 9:3"], ["18:10-18:50", "Florence Road"], ["19:55-20:35", "Ecca Vandal"], ["22:25-23:20", "The Reytons"]], "The Towers by Jupiler": [["13:40-14:00", "DINO"], ["14:55-15:20", "Isa Roos"], ["16:30-17:00", "Paul Elstak ft. Jebroer"], ["18:10-18:45", "Karakals"], ["19:55-20:45", "Nina Black"], ["22:25-23:15", "Mae.Lie B2B Synoxis"]], "Het Magazijn": [["14:00-16:00", "Kids with Buns (DJ Set)"], ["16:00-18:00", "Hakimm"], ["18:00-20:00", "Aili & Orson (DJ Set)"], ["20:00-21:30", "Alycia Bezgo"], ["21:30-23:00", "Boy & Girl"]]}, "zo": {"Main Stage": [["13:00-13:35", "Kaat Van Stralen"], ["14:05-14:45", "Bad Nerves"], ["15:15-15:55", "SONS"], ["16:35-17:35", "Rise Against"], ["18:20-19:20", "A Perfect Circle"], ["20:10-21:40", "Moby"], ["22:30-00:45", "The Cure"]], "The Barn": [["13:00-13:30", "Darren Kiely"], ["14:00-14:50", "Sierra Ferrell"], ["15:30-16:30", "Cory Wong"], ["17:10-18:10", "Mogwai"], ["19:10-20:20", "David Byrne"], ["21:20-22:50", "Paul Kalkbrenner"]], "KluB C": [["13:30-14:00", "Tsar B"], ["14:50-15:30", "Dressed Like Boys"], ["16:30-17:10", "Jessie Murph"], ["18:10-19:10", "Joy Crookes"], ["20:20-21:20", "Ethel Cain"], ["22:50-23:50", "Haevn"]], "NEST": [["13:35-14:00", "Chezile"], ["14:45-15:15", "Westside Cowboy"], ["15:55-16:30", "NewDad"], ["17:35-18:15", "Last Train"], ["19:20-20:05", "House of Protection"], ["21:40-22:25", "Psychonaut"]], "The Towers by Jupiler": [["13:35-13:55", "Diètro"], ["14:45-15:10", "Palmera"], ["15:55-16:25", "La Fuente"], ["17:35-18:10", "DJ F.R.A.N.K."], ["19:20-20:00", "Jordy"], ["21:40-22:20", "Lennert Wolfs"]], "Het Magazijn": [["14:00-16:00", "Kleinefrigo"], ["16:00-18:00", "Janus (Compact Disk Dummies)"], ["18:00-20:00", "Séa"], ["20:00-21:30", "Prinsezy"], ["21:30-23:00", "Charlotte Adigéry"]]}};
-const CAMP = {"wo": {"Red Bull Energy Zone": [["20:00-22:00", "The Karaoke Singalong Showdown"], ["22:00-00:00", "World Cup: België - Senegal"], ["00:00-01:00", "Flo Windey & Laurens Luyten ft. Nicky Du Soleil"], ["01:00-02:00", "Omdat Het Kan & Average Rob"], ["02:00-03:30", "Nina Black"]], "Café De Welkom": [["18:00-20:00", "World Cup: Engeland - DR Congo (1/16)"], ["22:00-00:00", "World Cup: België - Senegal (1/16)"]]}, "do": {"Red Bull Energy Zone": [["23:00-00:30", "RUBY XX"], ["00:30-01:30", "DJ RVG"], ["01:30-02:30", "Amber Broos"], ["02:30-03:30", "Bavo Mortier"]], "Café De Welkom": [["21:00-23:00", "World Cup: Spanje - Oostenrijk (1/16)"], ["01:00-03:00", "World Cup: Portugal - Kroatië (1/16)"]]}, "vr": {"Red Bull Energy Zone": [["23:00-00:30", "Tola OG"], ["00:30-01:30", "De Jaren Nul met Sam De Bruyn"], ["01:30-02:30", "DJ Licious"], ["02:30-03:30", "Diskobar Sabrina"]], "Café De Welkom": [["20:00-22:00", "World Cup: Australië - Egypte (1/16)"], ["00:00-02:00", "World Cup: Argentinië - Kaapverdië (1/16)"]]}, "za": {"Red Bull Energy Zone": [["23:00-00:30", "Bisoux"], ["00:30-01:30", "Unregular"], ["01:30-02:30", "Jeroen Delodder"], ["02:30-03:30", "Audiowave"]], "Café De Welkom": [["19:00-21:00", "World Cup: Canada - Marokko (1/8)"], ["23:00-01:00", "World Cup: Paraguay - Frankrijk (1/8)"]]}, "zo": {"Red Bull Energy Zone": [["23:00-00:30", "MagiK"], ["00:30-01:30", "Flavour Drop"], ["01:30-02:30", "Nona Van Braeckel"], ["02:30-03:30", "Gomorris"]], "Café De Welkom": [["22:00-00:00", "World Cup: 1/8 finale (team o.v.)"], ["02:00-04:00", "World Cup: 1/8 finale (team o.v.)"]]}};
+const CAMP = {"do": {"Red Bull Energy Zone": [["23:00-00:30", "RUBY XX"], ["00:30-01:30", "DJ RVG"], ["01:30-02:30", "Amber Broos"], ["02:30-03:30", "Bavo Mortier"]], "Café De Welkom": [["21:00-23:00", "World Cup: Spanje - Oostenrijk (1/16)"], ["01:00-03:00", "World Cup: Portugal - Kroatië (1/16)"]]}, "vr": {"Red Bull Energy Zone": [["23:00-00:30", "Tola OG"], ["00:30-01:30", "De Jaren Nul met Sam De Bruyn"], ["01:30-02:30", "DJ Licious"], ["02:30-03:30", "Diskobar Sabrina"]], "Café De Welkom": [["20:00-22:00", "World Cup: Australië - Egypte (1/16)"], ["00:00-02:00", "World Cup: Argentinië - Kaapverdië (1/16)"]]}, "za": {"Red Bull Energy Zone": [["23:00-00:30", "Bisoux"], ["00:30-01:30", "Unregular"], ["01:30-02:30", "Jeroen Delodder"], ["02:30-03:30", "Audiowave"]], "Café De Welkom": [["19:00-21:00", "World Cup: Canada - Marokko (1/8)"], ["23:00-01:00", "World Cup: Paraguay - Frankrijk (1/8)"]]}, "zo": {"Red Bull Energy Zone": [["23:00-00:30", "MagiK"], ["00:30-01:30", "Flavour Drop"], ["01:30-02:30", "Nona Van Braeckel"], ["02:30-03:30", "Gomorris"]], "Café De Welkom": [["22:00-00:00", "World Cup: 1/8 finale (team o.v.)"], ["02:00-04:00", "World Cup: 1/8 finale (team o.v.)"]]}};
 const PRICES = {"Regular Bars": [["Coca-Cola", 1, "3,90"], ["Coca-Cola Zero", 1, "3,90"], ["Fanta Orange", 1, "3,90"], ["Fanta Zero Lemon Elderflower", 1, "3,90"], ["Sprite Zero", 1, "3,90"], ["Aquarius Red Peach", 1, "3,90"], ["Spa Reine", 1, "3,90"], ["Spa Intense", 1, "3,90"], ["Fuze Tea Peach Hibiscus", 1, "3,90"], ["Fuze Tea Lemon Sparkling", 1, "3,90"], ["Red Bull", 1, "3,90"], ["Red Bull Watermelon", 1, "3,90"], ["Red Bull Zero", 1, "3,90"], ["Jupiler", 1.2, "4,68"], ["Jupiler 50CL", 2.2, "8,58"], ["Hoegaarden Rosée", 1.2, "4,68"], ["Jupiler Pitcher", 6.1, "23,79"], ["Hoegaarden Rosée Pitcher", 6.1, "23,79"], ["Corona Cero 0,0", 1.5, "5,85"], ["Jupilers 0,0", 1.2, "4,68"], ["Jupiler 0,0", 1, "3,90"], ["Flying Fish", 1, "3,90"], ["Jupiler Apple Cider", 1, "3,90"], ["2 Wine White Wine", 2.2, "8,58"], ["2 Wine Rosé Wine", 2.2, "8,58"], ["2 Wine Brut", 2.2, "8,58"], ["Cupkeeper", 1, "3,90"]], "Aperitivo & Wine & Apero Zones": [["Andrés Alonso White Wine Bottle", 11.2, "43,68"], ["Andrés Alonso White Wine Glass", 2, "7,80"], ["Andrés Alonso Rosé Wine Bottle", 11.2, "43,68"], ["Andrés Alonso Rosé Wine Glass", 1, "3,90"], ["Andrés Alonso Red Wine Bottle", 1, "3,90"], ["Andrés Alonso Red Wine Glass", 2, "7,80"], ["Civa Ribolla Gialla Sparkling Wine Bottle", 13.2, "51,48"], ["Civa Ribolla Gialla Sparkling Wine Glass", 2.5, "9,75"], ["Obix 0,0% Alcohol Free Bottle", 11.2, "43,68"], ["Obix 0,0% Alcohol Free Glass", 2, "7,80"], ["Studio Miraval Rosé Wine Bottle", 13.2, "51,48"], ["Studio Miraval Rosé Wine Glass", 2.5, "9,75"], ["Spa Touch Passion Fizz", 1, "3,90"], ["Aperol Spritz", 2.4, "9,36"], ["Aperol Spritz", 2.2, "8,58"]], "The Fine Wine Gang": [["Gusbourne Blanc de Blancs", 8, "31,20"], ["Gusbourne Blanc de Blancs Bottle", 41, "159,90"], ["Pere Ventura Cava Glass", 3.2, "12,48"], ["Pere Ventura Cava Bottle", 15, "58,50"], ["New Chapter Grüner Veltliner Glass", 4, "15,60"], ["New Chapter Grüner Veltliner Bottle", 20, "78,00"], ["Miraval Côtes de Provence Rosé Glass", 3.2, "12,48"], ["Miraval Côtes de Provence Rosé Bottle", 16, "62,40"], ["Born Rosé Barcelona BIO Glass", 2.7, "10,53"], ["Born Rosé Barcelona BIO Bottle", 13, "50,70"], ["Beaucastel Rouge Glass", 5, "19,50"], ["Beaucastel Rouge Bottle", 25, "97,50"], ["Tignanello Glass", 13.2, "51,48"], ["Tignanello Bottle", 77, "300,30"]], "Spirits": [["Cuba Libre", 3.7, "14,43"], ["Perfect Storm", 3.7, "14,43"], ["Black Mojito", 3.7, "14,43"], ["Gin Mare Tonic", 3.7, "14,43"], ["Red Bull Vodka", 3.7, "14,43"], ["Peach Pleaz!", 3.7, "14,43"], ["Rum Bull", 3.7, "14,43"], ["Pink Skinny Bitch", 3.7, "14,43"], ["Flying Italian", 3.7, "14,43"], ["Negroni", 3.7, "14,43"], ["Amaretto Sour", 3.7, "14,43"], ["Copperhead 0,0 Tonic", 2.7, "10,53"], ["Flying Italian 0,0", 2.7, "10,53"], ["Amaretto Sour 0,0", 2.7, "10,53"], ["Pornstar Martini", 3.7, "14,43"], ["Passion Mule 0%", 2.7, "10,53"], ["JägerMule", 3.7, "14,43"], ["JägerBull", 3.7, "14,43"], ["Jägershot", 1.7, "6,63"]], "Special Beers": [["Tripel Karmeliet", 2, "7,80"], ["Goose IPA", 2, "7,80"], ["Kwak Rouge", 2, "7,80"], ["Victoria", 2, "7,80"]]};
-const WK = [["2026-06-28", "21:00", "Zuid-Afrika", "Canada", "0-1", "Stephen Eustáquio 90+2", "1/16"], ["2026-06-29", "19:00", "Brazilië", "Japan", "2-1", "Kaishu Sano 29; Casemiro 56; Gabriel Martinelli 90+5", "1/16"], ["2026-06-29", "22:30", "Duitsland", "Paraguay", "1-1, pen. 3-4", "Julio Enciso 42; Kai Havertz 54; Paraguay wint na penaltys", "1/16"], ["2026-06-30", "03:00", "Nederland", "Marokko", "1-1, pen. 2-3", "Cody Gakpo 72; Issa Diop 90+1; Marokko wint na penaltys", "1/16"], ["2026-06-30", "23:00", "Frankrijk", "Zweden", "3-0", "Kylian Mbappé 45 en 74; Bradley Barcola 53", "1/16"], ["2026-07-01", "18:00", "Engeland", "DR Congo", "", "", "1/16"], ["2026-07-01", "22:00", "België", "Senegal", "", "", "1/16"], ["2026-07-02", "21:00", "Spanje", "Oostenrijk", "", "", "1/16"], ["2026-07-03", "01:00", "Portugal", "Kroatië", "", "", "1/16"], ["2026-07-03", "20:00", "Australië", "Egypte", "", "", "1/16"], ["2026-07-04", "00:00", "Argentinië", "Kaapverdië", "", "", "1/16"], ["2026-07-04", "19:00", "Canada", "Marokko", "", "1/8 finale", "1/8"], ["2026-07-04", "23:00", "Paraguay", "Frankrijk", "", "1/8 finale", "1/8"], ["2026-07-05", "22:00", "Brazilië", "TBD", "", "1/8 finale (teams o.v.)", "1/8"]];
+const WK = [["2026-06-28", "21:00", "Zuid-Afrika", "Canada", "0-1", "Stephen Eustáquio 90+2", "1/16"], ["2026-06-29", "19:00", "Brazilië", "Japan", "2-1", "Kaishu Sano 29; Casemiro 56; Gabriel Martinelli 90+5", "1/16"], ["2026-06-29", "22:30", "Duitsland", "Paraguay", "1-1, pen. 3-4", "Julio Enciso 42; Kai Havertz 54; Paraguay wint na penaltys", "1/16"], ["2026-06-30", "03:00", "Nederland", "Marokko", "1-1, pen. 2-3", "Cody Gakpo 72; Issa Diop 90+1; Marokko wint na penaltys", "1/16"], ["2026-06-30", "14:00", "Noorwegen", "Ivoorkust", "2-1", "", "1/16"], ["2026-06-30", "22:00", "Mexico", "Ecuador", "2-0", "", "1/16"], ["2026-06-30", "23:00", "Frankrijk", "Zweden", "3-0", "Kylian Mbappé 45 en 74; Bradley Barcola 53", "1/16"], ["2026-07-01", "18:00", "Engeland", "DR Congo", "", "", "1/16"], ["2026-07-01", "22:00", "België", "Senegal", "", "", "1/16"], ["2026-07-02", "02:00", "VS", "Bosnië en Herzegovina", "", "", "1/16"], ["2026-07-02", "21:00", "Spanje", "Oostenrijk", "", "", "1/16"], ["2026-07-03", "01:00", "Portugal", "Kroatië", "", "", "1/16"], ["2026-07-03", "05:00", "Zwitserland", "Algerije", "", "", "1/16"], ["2026-07-03", "20:00", "Australië", "Egypte", "", "", "1/16"], ["2026-07-04", "00:00", "Argentinië", "Kaapverdië", "", "", "1/16"], ["2026-07-04", "03:30", "Colombia", "Ghana", "", "", "1/16"], ["2026-07-04", "19:00", "Canada", "Marokko", "", "", "1/8"], ["2026-07-04", "23:00", "Paraguay", "Frankrijk", "", "", "1/8"], ["2026-07-05", "22:00", "Brazilië", "Noorwegen", "", "", "1/8"], ["2026-07-06", "02:00", "Mexico", "Engeland/DR Congo", "", "", "1/8"], ["2026-07-06", "21:00", "Portugal/Kroatië", "Spanje/Oostenrijk", "", "", "1/8"], ["2026-07-07", "02:00", "VS/Bosnië", "België/Senegal", "", "", "1/8"], ["2026-07-07", "18:00", "Argentinië/Kaapverdië", "Australië/Egypte", "", "", "1/8"], ["2026-07-07", "22:00", "Zwitserland/Algerije", "Colombia/Ghana", "", "", "1/8"]];
 const WHERE = ["Bar 16", "Main Stage", "The Barn", "KluB C", "NEST", "The Towers by Jupiler", "Het Magazijn", "Locker", "Eten halen", "Toilet", "Straat", "Camping", "Even kwijt, bel mij"];
 const DRINKS = {"jup25": {"label": "Jupiler 25cl", "coins": 1, "cat": "Bier"}, "jup50": {"label": "Jupiler 50cl", "coins": 2.2, "cat": "Bier"}, "pitcher": {"label": "Jupiler Pitcher", "coins": 6.1, "cat": "Bier"}, "hoegaarden": {"label": "Hoegaarden Rosée", "coins": 1.2, "cat": "Bier"}, "water": {"label": "Plat water", "coins": 1, "cat": "Fris & Water"}, "spuit": {"label": "Spuitwater", "coins": 1, "cat": "Fris & Water"}, "cola": {"label": "Cola", "coins": 1, "cat": "Fris & Water"}, "zero": {"label": "Cola Zero", "coins": 1, "cat": "Fris & Water"}, "fanta": {"label": "Fanta", "coins": 1, "cat": "Fris & Water"}, "aquarius": {"label": "Aquarius", "coins": 1, "cat": "Fris & Water"}, "redbull": {"label": "Red Bull", "coins": 1, "cat": "Overig"}, "jagershot": {"label": "Jägershot", "coins": 1.7, "cat": "Overig"}};
 const sb = supabase.createClient('https://gfloamboqujdkuqqptiq.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmbG9hbWJvcXVqZGt1cXFwdGlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4OTc3MDEsImV4cCI6MjA5ODQ3MzcwMX0.volzJJ_9MUqnlzp1pUvSdPFKMN5Ircc5rEHiQqEucpc');
 
-const labels = {wo:'Wo',do:'Do',vr:'Vr',za:'Za',zo:'Zo'};
-const dates = {wo:'2026-07-01',do:'2026-07-02',vr:'2026-07-03',za:'2026-07-04',zo:'2026-07-05'};
+const labels = {do:'Do',vr:'Vr',za:'Za',zo:'Zo'};
+const dates = {do:'2026-07-02',vr:'2026-07-03',za:'2026-07-04',zo:'2026-07-05'};
 const COIN = 3.9, TRICOUNT = 'https://tricount.com/tlTrqXKqcHAqcactWU';
 const tabs = [['lineup','Line-up','🎪'],['now','Nu','🔥'],['where','Waar','📍'],['chat','Chat','💬'],['order','Bestellen','🍻'],['card','Kaart','🎫'],['locker','Locker','🔒'],['camp','Camping','⛺'],['sixpack','Sixpack','🍺'],['costs','Kosten','💶'],['map','Map','🗺️'],['photos','Foto','📸'],['wk','WK','⚽'],['prices','Prijzen','💰'],['weather','Weer','☀️'],['sync','Sync','🔄']];
 
@@ -113,7 +114,7 @@ function defaultDay(){
   return found || 'do';
 }
 
-let tab='lineup', day=defaultDay(), favOnly=false, soonOnly=false, my=localStorage.rwName||'', weather48=[];
+let tab='lineup', day=defaultDay(), favOnly=false, soonOnly=false, groupFavOnly=false, my=localStorage.rwName||'', weather48=[];
 let live = {messages:[], locations:{}, locationHistory:[], card:null, locker:null, pints:[], favorites:[]};
 
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -185,28 +186,40 @@ function allSlots(){
   Object.entries(LINEUP).forEach(([d,st])=>Object.entries(st).forEach(([stage,rows])=>rows.forEach(r=>a.push({d,stage,time:r[0],act:r[1],s:stat(d,r[0]),id:sid(d,stage,r[0],r[1])}))));
   return a;
 }
+function favNames(id){
+  return live.favorites.filter(f=>f.artist_id===id).map(f=>f.user_name);
+}
+function favTag(id){
+  let names = favNames(id);
+  if(!names.length) return '';
+  if(names.length>=2) return `<br><span class="badge group">👥 SAMEN MET ${names.length}: ${names.map(n=>esc(n)).join(', ')}</span>`;
+  return `<br><span class="chip on">★ ${names.map(n=>esc(n)).join(', ')}</span>`;
+}
 function slotRows(rows,stage,d){
   return rows.map(r=>{
     let id=sid(d,stage,r[0],r[1]), s=stat(d,r[0]);
     let badge = s==='now' ? "<span class='badge now'>NU BEZIG</span>" : s==='soon' ? "<span class='badge soon'>BINNEN 30 MIN</span>" : '';
-    return `<div class='line'><div class='between'><div><b>${r[0]}</b> · ${esc(r[1])}${badge?'<br>'+badge:''}</div><button class='btn secondary' style="min-width:44px" onclick="toggleFav('${id}')">${fav(id)?'★':'☆'}</button></div></div>`;
+    return `<div class='line'><div class='between'><div><b>${r[0]}</b> · ${esc(r[1])}${badge?'<br>'+badge:''}${favTag(id)}</div><button class='btn secondary' style="min-width:44px" onclick="toggleFav('${id}')">${fav(id)?'★':'☆'}</button></div></div>`;
   }).join('');
 }
 function renderLineup(){
   let dayData = LINEUP[day] || {};
-  let hasStages = Object.keys(dayData).length>0;
   return `<h2 class="page">🎪 Line-up</h2>${dayPills()}
-  <div class='card'><div class="row"><button class='btn ${favOnly?'primary':'secondary'}' style="flex:1" onclick='favOnly=!favOnly;render()'>${favOnly?'★':'☆'} Favorieten</button> <button class='btn ${soonOnly?'primary':'secondary'}' style="flex:1" onclick='soonOnly=!soonOnly;render()'>⏱ Binnen 30 min</button></div></div>
-  ${hasStages ? Object.entries(dayData).map(([st,rows])=>{
+  <div class='card'><div class="row"><button class='btn ${favOnly?'primary':'secondary'}' style="flex:1" onclick='favOnly=!favOnly;render()'>${favOnly?'★':'☆'} Mijn favorieten</button> <button class='btn ${groupFavOnly?'primary':'secondary'}' style="flex:1" onclick='groupFavOnly=!groupFavOnly;render()'>👥 Groepsfavorieten</button></div>
+  <div class="row" style="margin-top:8px"><button class='btn ${soonOnly?'primary':'secondary'}' style="flex:1" onclick='soonOnly=!soonOnly;render()'>⏱ Binnen 30 min</button></div></div>
+  ${Object.entries(dayData).map(([st,rows])=>{
     let vis=rows;
     if(favOnly) vis=vis.filter(r=>fav(sid(day,st,r[0],r[1])));
+    if(groupFavOnly) vis=vis.filter(r=>favNames(sid(day,st,r[0],r[1])).length>0);
     if(soonOnly) vis=vis.filter(r=>stat(day,r[0])==='soon');
     return `<div class='card'><h3>${st}</h3>${vis.length?slotRows(vis,st,day):'<span class="muted">Geen items.</span>'}</div>`;
-  }).join('') : `<div class='card'><p class="muted">Geen podium-programma op ${labels[day]}. Check de Camping-tab voor het World Cup- en camping-programma van deze dag.</p></div>`}`;
+  }).join('')}`;
 }
 function renderNow(){
   let r = allSlots().filter(x=>x.s==='now');
-  return `<h2 class="page">🔥 Nu bezig</h2><div class='card'>${r.map(x=>`<div class='line'><b>${x.time}</b> · ${esc(x.act)}<br><span class='muted'>${x.stage} · ${labels[x.d]}</span></div>`).join('') || '<span class="muted">Nu niets bezig.</span>'}</div>`;
+  return `<h2 class="page">🔥 Nu bezig</h2><div class='card'>${r.map(x=>{
+    return `<div class='line'><b>${x.time}</b> · ${esc(x.act)}<br><span class='muted'>${x.stage} · ${labels[x.d]}</span>${favTag(x.id)}</div>`;
+  }).join('') || '<span class="muted">Nu niets bezig.</span>'}</div>`;
 }
 function renderWhere(){
   let w = live.locations, h = live.locationHistory;
@@ -228,6 +241,8 @@ async function sendMsg(){
   let text = (msg.value||'').trim();
   if(text){await sb.from('messages').insert({user_name:my,message:text});syncAll()}
 }
+let orderFor = localStorage.rwOrderFor || '';
+function setOrderFor(v){orderFor=v;localStorage.rwOrderFor=v;render()}
 function orderBy(){
   let by = {};
   live.pints.forEach(x=>{
@@ -238,11 +253,24 @@ function orderBy(){
   });
   return by;
 }
+function orderByPerson(){
+  let by = {};
+  live.pints.forEach(x=>{
+    let p = x.user_name || 'Onbekend';
+    by[p] ??= {qty:0, coins:0, items:{}};
+    by[p].qty += +x.qty;
+    by[p].coins += +x.coins;
+    by[p].items[x.type] ??= {label:x.label, qty:0};
+    by[p].items[x.type].qty += +x.qty;
+  });
+  return by;
+}
 async function addOrder(k,dlt){
-  let by = orderBy(), cur = by[k]?.qty || 0;
-  if(cur+dlt<0) return;
+  let who = orderFor || my;
+  let mine = live.pints.filter(x=>x.user_name===who && x.type===k).reduce((s,x)=>s+ +x.qty,0);
+  if(mine+dlt<0) return;
   let d = DRINKS[k];
-  await sb.from('pint_entries').insert({user_name:my, type:k, label:d.label, qty:dlt, coins:d.coins*dlt, euro:d.coins*COIN*dlt});
+  await sb.from('pint_entries').insert({user_name:who, type:k, label:d.label, qty:dlt, coins:d.coins*dlt, euro:d.coins*COIN*dlt});
   syncAll();
 }
 function roundHistory(){
@@ -251,33 +279,44 @@ function roundHistory(){
   }).filter(Boolean).slice().reverse();
 }
 async function finishRound(){
-  let by = orderBy(), tc = Object.values(by).reduce((s,x)=>s+x.coins,0);
+  let by = orderBy(), byPerson = orderByPerson(), tc = Object.values(by).reduce((s,x)=>s+x.coins,0);
   if(!tc){alert('Er staat nog niets op het tabblad.');return}
   let summary = Object.values(by).filter(x=>x.qty).map(x=>`${x.qty}× ${x.label}`).join(', ');
   if(!confirm(`Rondje afronden en teller op nul zetten?\n\n${summary}\nTotaal: ${coins(tc)} (${money(tc*COIN)})`)) return;
-  await sb.from('messages').insert({user_name:my, message:'__ROUND__'+JSON.stringify({items:by, totalCoins:tc, totalEuro:tc*COIN})});
+  await sb.from('messages').insert({user_name:my, message:'__ROUND__'+JSON.stringify({items:by, byPerson, totalCoins:tc, totalEuro:tc*COIN})});
   await sb.from('pint_entries').delete().gte('created_at','1900-01-01');
   syncAll();
 }
 function renderOrder(){
   let by = orderBy(), tc = Object.values(by).reduce((s,x)=>s+x.coins,0);
+  let byPerson = orderByPerson();
   let cats = [...new Set(Object.entries(DRINKS).map(([k,d])=>d.cat))];
   let hist = roundHistory();
+  let orderOptions = ['Groepskaart', ...PEOPLE];
+  let currentFor = orderFor || my;
   return `<h2 class="page">🍻 Bestellen</h2>
+  <div class='card'>
+    <label><b>Wie bestelt er? (of "Groepskaart")</b></label>
+    <select onchange="setOrderFor(this.value)">${orderOptions.map(p=>`<option ${currentFor===p?'selected':''}>${esc(p)}</option>`).join('')}</select>
+  </div>
   <div class='card' style="text-align:center">
-    <span class="muted">Huidig rondje</span>
+    <span class="muted">Huidig rondje – totaal</span>
     <h1 style="font-size:38px;margin:4px 0">${coins(tc)}</h1>
     <p class='muted' style="margin:0 0 12px">${money(tc*COIN)}</p>
-    ${Object.values(by).filter(x=>x.qty).map(x=>`<div class='between line'><div><b>${esc(x.label)}</b></div><span class='amount'>${x.qty}× · ${coins(x.coins)}</span></div>`).join('') || '<span class="muted">Nog niets besteld voor dit rondje.</span>'}
-    <button class='btn danger' style='width:100%;margin-top:12px' onclick='finishRound()'>✅ Rondje afronden &amp; teller op nul</button>
+    <button class='btn danger' style='width:100%' onclick='finishRound()'>✅ Rondje afronden &amp; teller op nul</button>
   </div>
   <div class='card'>
     ${cats.map(cat=>`<div class="cat-title">${cat}</div>${Object.entries(DRINKS).filter(([k,d])=>d.cat===cat).map(([k,d])=>{
-      let cur = by[k]?.qty || 0;
-      return `<div class='drink-row'><div class="info"><b>${esc(d.label)}</b><br><span class='muted'>${d.coins} coins</span></div><div class="ctrl"><button class="round-btn secondary btn" onclick="addOrder('${k}',-1)">−</button><span class="qty">${cur}</span><button class="round-btn primary btn" onclick="addOrder('${k}',1)">+</button></div></div>`;
+      let cur = live.pints.filter(x=>x.user_name===currentFor && x.type===k).reduce((s,x)=>s+ +x.qty,0);
+      return `<div class='drink-row'><div class="info"><b>${esc(d.label)}</b><br><span class='muted'>${d.coins} coins · voor ${esc(currentFor)}</span></div><div class="ctrl"><button class="round-btn secondary btn" onclick="addOrder('${k}',-1)">−</button><span class="qty">${cur}</span><button class="round-btn primary btn" onclick="addOrder('${k}',1)">+</button></div></div>`;
     }).join('')}`).join('')}
   </div>
-  <div class='card'><h3>Historiek rondjes</h3>${hist.map(h=>`<div class='line'><div class="between"><b>${coins(h.totalCoins)}</b><span class="muted">${new Date(h.at).toLocaleString('nl-BE')}</span></div><span class="muted">${Object.values(h.items).filter(x=>x.qty).map(x=>`${x.qty}× ${x.label}`).join(', ')}</span></div>`).join('') || '<span class="muted">Nog geen afgeronde rondjes.</span>'}</div>`;
+  <div class='card'><h3>Deze ronde – per persoon</h3>
+    ${Object.entries(byPerson).filter(([p,x])=>x.qty).map(([p,x])=>`<div class='line'><div class="between"><b>${esc(p)}</b><span class="amount">${coins(x.coins)}</span></div><span class="muted">${Object.values(x.items).filter(i=>i.qty).map(i=>`${i.qty}× ${i.label}`).join(', ')}</span></div>`).join('') || '<span class="muted">Nog niets besteld voor dit rondje.</span>'}
+  </div>
+  <div class='card'><h3>Historiek afgeronde rondjes</h3>${hist.map(h=>`<div class='line'><div class="between"><b>${coins(h.totalCoins)}</b><span class="muted">${new Date(h.at).toLocaleString('nl-BE')}</span></div>
+    ${h.byPerson ? Object.entries(h.byPerson).filter(([p,x])=>x.qty).map(([p,x])=>`<div class="muted">${esc(p)}: ${Object.values(x.items).filter(i=>i.qty).map(i=>`${i.qty}× ${i.label}`).join(', ')}</div>`).join('') : `<span class="muted">${Object.values(h.items).filter(x=>x.qty).map(x=>`${x.qty}× ${x.label}`).join(', ')}</span>`}
+    </div>`).join('') || '<span class="muted">Nog geen afgeronde rondjes.</span>'}</div>`;
 }
 function cardHistory(){
   return live.messages.filter(x=>String(x.message||'').startsWith('__CARD_HISTORY__')).map(x=>{
@@ -337,13 +376,33 @@ function renderCamp(){
   ${Object.entries(dayData).map(([st,rows])=>`<div class='card'><h3>${st}</h3>${rows.length?rows.map(r=>`<div class='line'><b>${r[0]}</b> · ${esc(r[1])}</div>`).join(''):'<span class="muted">Geen programma.</span>'}</div>`).join('')}
   <button class='btn secondary' style="width:100%" onclick='openUrl("https://clashfinder.com/s/rockwerchter26/")'>🔗 Open Clashfinder (voor de laatste update)</button>`;
 }
+let giveSelected = [];
+function toggleGiveSelect(p){
+  let i = giveSelected.indexOf(p);
+  if(i>=0) giveSelected.splice(i,1); else giveSelected.push(p);
+  render();
+}
 function sixpackEvents(){
   return live.messages.filter(x=>String(x.message||'').startsWith('__SIXPACK__')).map(x=>{
-    try{return {...JSON.parse(String(x.message).replace('__SIXPACK__','')), at:x.created_at, by:x.user_name}}catch(e){return null}
+    try{return {...JSON.parse(String(x.message).replace('__SIXPACK__','')), at:x.created_at, by:x.user_name, id:x.id}}catch(e){return null}
   }).filter(Boolean);
 }
-async function sixpackAction(kind, person){
-  await sb.from('messages').insert({user_name:person, message:'__SIXPACK__'+JSON.stringify({kind})});
+async function sixpackAdjust(kind, person, dlt){
+  let ev = sixpackEvents();
+  let cur = ev.filter(e=>e.kind===kind && e.by===person).reduce((s,e)=>s+(+e.qty||0),0);
+  if(cur+dlt<0) return;
+  await sb.from('messages').insert({user_name:person, message:'__SIXPACK__'+JSON.stringify({kind, qty:dlt})});
+  syncAll();
+}
+function givenTo(e){ return Array.isArray(e.to) ? e.to : (e.to ? [e.to] : []); }
+async function sixpackGiveMulti(from){
+  if(!giveSelected.length){alert('Kies minstens 1 persoon om aan te verdelen.');return}
+  await sb.from('messages').insert({user_name:my, message:'__SIXPACK__'+JSON.stringify({kind:'given', from, to:[...giveSelected], qty:1})});
+  giveSelected = [];
+  syncAll();
+}
+async function sixpackUndo(id){
+  await sb.from('messages').delete().eq('id', id);
   syncAll();
 }
 function wantStatus(events, person){
@@ -352,42 +411,55 @@ function wantStatus(events, person){
 }
 function renderSixpack(){
   let ev = sixpackEvents();
-  let bought = ev.filter(e=>e.kind==='bought');
-  let redeemed = ev.filter(e=>e.kind==='redeemed');
-  let voorraad = redeemed.length; // elke ingewisselde voucher = 1 sixpack klaar om te verdelen
+  let boughtEv = ev.filter(e=>e.kind==='bought');
+  let redeemedEv = ev.filter(e=>e.kind==='redeemed');
+  let givenEv = ev.filter(e=>e.kind==='given').slice().reverse();
+  let totalBought = boughtEv.reduce((s,e)=>s+(+e.qty||0),0);
+  let totalRedeemed = redeemedEv.reduce((s,e)=>s+(+e.qty||0),0);
+  let totalGiven = givenEv.reduce((s,e)=>s+(+e.qty||0),0);
+  let voorraad = Math.max(0, totalRedeemed - totalGiven);
   let wanters = PEOPLE.filter(p=>wantStatus(ev,p));
-  let perBlikje = wanters.length ? Math.floor(voorraad*6/wanters.length) : 0;
   let iWant = wantStatus(ev, my);
+  let myBought = boughtEv.filter(e=>e.by===my).reduce((s,e)=>s+(+e.qty||0),0);
+  let myRedeemed = redeemedEv.filter(e=>e.by===my).reduce((s,e)=>s+(+e.qty||0),0);
   return `<h2 class="page">🍺 Sixpack bier</h2>
   <div class='card'>
-    <p class="muted">Iedereen koopt een voucher, iemand wisselt hem in bij de bar voor een fysieke sixpack, en die verdelen we onder wie er eentje wil.</p>
-    <div class="row">
-      <button class='btn primary' style="flex:1" onclick='sixpackAction("bought","${my}")'>🎟️ Ik kocht een voucher</button>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <button class='btn secondary' style="flex:1" onclick='sixpackAction("redeemed","${my}")'>🍺 Ik wisselde in bij de bar</button>
-    </div>
-    <div class="row" style="margin-top:8px">
-      <button class='btn ${iWant?'primary':'secondary'}' style="flex:1" onclick='sixpackAction("${iWant?"unwant":"want"}","${my}")'>${iWant?'🙅 Ik hoef er geen meer':'🙋 Ik wil er eentje'}</button>
-    </div>
+    <p class="muted">Iedereen koopt een voucher, iemand wisselt hem in bij de bar voor een fysieke sixpack, en die verdeel je in één keer over iedereen die meedeelt.</p>
+    <div class="drink-row"><div class="info"><b>🎟️ Mijn vouchers gekocht</b></div><div class="ctrl"><button class="round-btn secondary btn" onclick="sixpackAdjust('bought','${my}',-1)">−</button><span class="qty">${myBought}</span><button class="round-btn primary btn" onclick="sixpackAdjust('bought','${my}',1)">+</button></div></div>
+    <div class="drink-row"><div class="info"><b>🍺 Door mij ingewisseld bij bar</b></div><div class="ctrl"><button class="round-btn secondary btn" onclick="sixpackAdjust('redeemed','${my}',-1)">−</button><span class="qty">${myRedeemed}</span><button class="round-btn primary btn" onclick="sixpackAdjust('redeemed','${my}',1)">+</button></div></div>
+    <button class='btn ${iWant?'primary':'secondary'}' style="width:100%;margin-top:10px" onclick='sixpackAction("${iWant?"unwant":"want"}","${my}")'>${iWant?'🙅 Ik hoef er geen meer':'🙋 Ik wil er eentje'}</button>
   </div>
   <div class='card'>
     <div class="stat-grid">
-      <div class="box"><b>${bought.length}</b><span>Gekocht</span></div>
-      <div class="box"><b>${redeemed.length}</b><span>Ingewisseld</span></div>
-      <div class="box"><b>${wanters.length}</b><span>Willen er een</span></div>
+      <div class="box"><b>${totalBought}</b><span>Gekocht</span></div>
+      <div class="box"><b>${totalRedeemed}</b><span>Ingewisseld</span></div>
+      <div class="box"><b>${voorraad}</b><span>Klaar om te geven</span></div>
     </div>
-    ${wanters.length && voorraad ? `<p class="amount" style="text-align:center;margin-top:6px">≈ ${perBlikje} blikjes per persoon bij verdelen</p>` : ''}
+  </div>
+  <div class='card'><h3>Verdelen</h3>
+    <label><b>Van (wie heeft de sixpack)</b></label><select id='giveFrom'>${PEOPLE.map(p=>`<option ${p===my?'selected':''}>${esc(p)}</option>`).join('')}</select>
+    <label style="display:block;margin-top:10px"><b>Aan wie? (tik iedereen aan die meedeelt)</b></label>
+    <div>${PEOPLE.map(p=>`<span class="chip ${giveSelected.includes(p)?'on':''}" style="cursor:pointer" onclick="toggleGiveSelect('${p}')">${giveSelected.includes(p)?'✓ ':''}${esc(p)}</span>`).join('')}</div>
+    <button class='btn primary' style="width:100%;margin-top:10px" onclick="sixpackGiveMulti(giveFrom.value)">➡️ Verdeel 1 sixpack over ${giveSelected.length||0} gekozen</button>
+    ${voorraad<=0 ? '<p class="muted" style="margin-top:6px">Let op: er staat momenteel niks klaar om te geven.</p>' : ''}
+    <h3 style="margin-top:14px">Verdelingen</h3>
+    ${givenEv.length ? givenEv.map(e=>`<div class='line'><div class="between"><span><b>${esc(e.from)}</b> ➡️ <b>${givenTo(e).map(n=>esc(n)).join(', ')}</b></span><button class="btn secondary" style="min-width:auto;padding:6px 10px" onclick="sixpackUndo('${e.id}')">↩️</button></div><span class="muted">${new Date(e.at).toLocaleString('nl-BE')}</span></div>`).join('') : '<span class="muted">Nog niets verdeeld.</span>'}
   </div>
   <div class='card'><h3>Wachtlijst (willen er nog een)</h3>
-    ${wanters.length ? wanters.map(p=>`<div class="person-row"><b>${esc(p)}</b><button class="btn secondary" onclick='sixpackAction("unwant","${p}")'>✅ Kreeg z'n sixpack</button></div>`).join('') : '<span class="muted">Niemand op de wachtlijst.</span>'}
+    ${wanters.length ? wanters.map(p=>`<div class="person-row"><b>${esc(p)}</b><button class="btn secondary" onclick='sixpackAction("unwant","${p}")'>✅ Kreeg er een</button></div>`).join('') : '<span class="muted">Niemand op de wachtlijst.</span>'}
   </div>
   <div class='card'><h3>Per persoon</h3>
     ${PEOPLE.map(p=>{
-      let b = bought.filter(e=>e.by===p).length, r = redeemed.filter(e=>e.by===p).length;
-      return `<div class="person-row"><b>${esc(p)}</b><span class="muted">🎟️ ${b} · 🍺 ${r}${wantStatus(ev,p)?' · 🙋':''}</span></div>`;
+      let b = boughtEv.filter(e=>e.by===p).reduce((s,e)=>s+(+e.qty||0),0);
+      let r = redeemedEv.filter(e=>e.by===p).reduce((s,e)=>s+(+e.qty||0),0);
+      let ontving = givenEv.filter(e=>givenTo(e).includes(p)).length;
+      return `<div class="person-row"><b>${esc(p)}</b><span class="muted">🎟️ ${b} · 🍺 ${r} · 🥤 ontving ${ontving}${wantStatus(ev,p)?' · 🙋':''}</span></div>`;
     }).join('')}
   </div>`;
+}
+async function sixpackAction(kind, person){
+  await sb.from('messages').insert({user_name:person, message:'__SIXPACK__'+JSON.stringify({kind})});
+  syncAll();
 }
 function renderCosts(){
   return `<h2 class="page">💶 Kosten</h2><div class='card'><button class='btn primary' style="width:100%" onclick='openUrl(TRICOUNT)'>Open Tricount</button><button class='btn secondary' style="width:100%;margin-top:8px" onclick='copyText(TRICOUNT,"Tricount-link gekopieerd")'>Kopieer link</button><p class='muted'>${TRICOUNT}</p></div>`;
